@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Crud.Core.Model.Details>
+@{
+    Layout = null;
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="https://kit.fontawesome.com/a10c7f6efa.js" crossorigin="anonymous"></script>
+    <style>
+       .Table{
+              border-collapse: collapse;
+              width: 100%;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+    </style>
+</head>
+<h1>Read</h1>
+<p>
+   
+    <input type="button" value="Create New" onclick="location.href='@Url.Action("Winner", "Hemathkumar")'" />
+</p>
+<table class="Table">
+    
+    <tr>
+        <th> @Html.DisplayNameFor(a=>a.id)</th>
+        <th> @Html.DisplayNameFor(a=>a.FirstName)</th>
+        <th> @Html.DisplayNameFor(a=>a.MiddleName)</th>
+        <th> @Html.DisplayNameFor(a=>a.LastName)</th>
+        <th> @Html.DisplayNameFor(a=>a.Course)</th>
+        <th> @Html.DisplayNameFor(a=>a.Gender)</th>
+        <th> @Html.DisplayNameFor(a=>a.Phone)</th>
+        <th> @Html.DisplayNameFor(a=>a.Address)</th>
+        <th> @Html.DisplayNameFor(a=>a.Email)</th>
+        <th> @Html.DisplayNameFor(a=>a.Password)</th>
+        <th> @Html.DisplayNameFor(a=>a.ReTypePassword)</th>
+        @*<th> @Html.DisplayNameFor(a=>a.)</th>
+        <th> @Html.DisplayNameFor(a=>a.Created_Time_Stamp)</th>
+        <th> @Html.DisplayNameFor(a=>a.Updated_Time_Stamp)</th>*@
+    </tr>
+    
+        @foreach(var item in Model)
+        {
+          <tr>
+            <td>@item.id</td>
+            <td>@item.FirstName</td>
+            <td>@item.MiddleName</td>
+            <td>@item.LastName</td>
+            <td>@item.Course</td>
+            <td>@item.Gender</td>
+            <td>@item.Phone</td>
+            <td>@item.Address</td>
+            <td>@item.Email</td>
+            <td>@item.Password</td>
+            <td>@item.ReTypePassword</td>
+           @* <td>@item.Is_Deleted</td>
+            <td>@item.Created_Time_Stamp</td>
+            <td>@item.Updated_Time_Stamp</td>*@
+            <td><input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Hemathkumar", new{id=item.id}) '"  /></td>
+            @*<td><input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Hemathkumar", new{id=item.id})'" /></td>*@
+            <td>
+                <button type="submit"  onclick="return confirm('Are you sure want to delete this record?')">
+                @Html.ActionLink("delete", "Delete", new { id = item.id})
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+          </tr>
+        }
+</table>

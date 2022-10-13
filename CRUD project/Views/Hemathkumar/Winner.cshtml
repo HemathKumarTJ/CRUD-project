@@ -1,0 +1,205 @@
+﻿@model Crud.Core.Model.Details
+
+@{
+    Layout = null;
+}
+
+<head>
+    <script src="./js/site.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+
+    <title> form</title>
+    <style>
+        .a {
+            padding: 0px 0px 25px 0px;
+        }
+
+        body {
+            margin: 0px 383px 10px 341px;
+        }
+
+        form {
+            border: 1px solid black;
+            border-radius: 25px;
+            padding-left: 50px;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            background-color: pink;
+        }
+    </style>
+</head>
+@using (Html.BeginForm("Loser", "Hemathkumar", FormMethod.Post, new { @id = "hemath" }))
+{
+    <body>
+        <form>
+            <h1>REGISTRATION FORM</h1>
+            <div class="a">
+                <label>Firstname</label>
+                @Html.TextBoxFor(a=> a.FirstName)
+            </div>
+            <div class="a">
+                <label>middlename</label>
+                @Html.TextBoxFor(a=> a.MiddleName)
+            </div>
+            <div class="a">
+                <label>lastname</label>
+                @Html.TextBoxFor(a=> a.LastName)
+            </div>
+            <div class="a">
+                <label>course:</label>
+                @Html.DropDownList("Course", new List<SelectListItem>
+            {
+            new SelectListItem{ Text="MBA"},
+            new SelectListItem{ Text="MBBS"},
+            new SelectListItem{ Text="BE"},
+            new SelectListItem{Text="BCom"},
+            }, "----Select List----")
+            </div>
+            <div class="a">
+                <label>Gender: </label>
+                <label> @Html.RadioButtonFor(a=> a.Gender,"Male")Male</label>
+                <label>@Html.RadioButtonFor(a => a.Gender,"Female")Female</label>
+                <label>@Html.RadioButtonFor(a => a.Gender,"Others")Others</label>
+            </div>
+            <div class="a">
+                <label>phone</label>
+                @Html.TextBoxFor(a=>a.Phone)
+            </div>
+            <div class="a">
+                <label>Address</label>
+                @Html.TextAreaFor(a=>a.Address)
+            </div>
+            <div class="a">
+                <label>Email</label>
+                @Html.TextBoxFor(a=>a.Email)
+            </div>
+            <div class="a">
+                <label>password</label>
+                @Html.PasswordFor(a=>a.Password , new{id="password"})
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </div>
+            <div class="a">
+                <label>Retype password</label>
+                @Html.PasswordFor(a=>a.ReTypePassword, new{id="Retype_password"})
+                <input type="checkbox" onclick="newFunction()">Show Password
+
+            </div>
+            <div class="a">
+                @*<button>submit</button>*@
+                <button type="submit" class="btn btn-success" onclick="Submit()">Submit</button>
+                <input type="button" value="Go-To_Read" onclick="location.href='@Url.Action("Read", "Hemathkumar")'" />
+            </div>
+
+        </form>
+
+    </body>
+}
+<script>
+    $().ready(function () {
+
+        $("#hemath").validate({
+            // in 'rules' user have to specify all the constraints for respective fields
+            rules:
+            {
+
+                FirstName:
+                {
+                    required: true,
+                    lettersonly: true,
+                },
+
+
+                Course:
+                {
+                    required: true,
+                },
+
+                Gender:
+                {
+                    required: true,
+                },
+
+
+                Phone:
+                {
+
+                    required: true,
+                    number: true,
+                    maxlength: 13,
+                },
+
+                Address:
+                {
+                    required: true,
+                },
+                Email:
+                {
+                    required: true,
+                },
+                Password:
+                {
+                    required: true,
+                },
+                ReTypePassword:
+                {
+                    required: true,
+                    equalTo: "#password"
+                }
+
+            },
+            // in 'messages' user have to specify message as per rules
+            messages:
+            {
+                FirstName:
+                {
+                    required: " Please enter a FirstName",
+                    lettersonly: "Only alphabets are valid"
+                },
+
+                Course:
+                {
+                    required: "Please enter the Course",
+                },
+                Gender:
+                {
+                    required: "please select any Gender",
+                },
+                Phone:
+                {
+                    required: " Please enter a Phone Number",
+                    maxlength: " Your number must not exceed 13 characters",
+                },
+                Address:
+                {
+                    required: " Please enter a Address",
+                },
+                Email:
+                {
+                    required: " Please enter a EmailId",
+                },
+
+                Password:
+                {
+                    required: " Please enter a password",
+                },
+                ReTypePassword:
+                {
+                    required: " Please enter a password again",
+                    equalTo: " Please enter the same password as entered above"
+                }
+            }
+
+        });
+    });
+
+
+    function Submit() {
+        if ($("#hemath").validate()) {
+            $("#hemath").submit();
+        }
+    }
+</script>
+

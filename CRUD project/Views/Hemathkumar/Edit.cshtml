@@ -1,0 +1,58 @@
+﻿@model Crud.Core.Model.Details
+
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        .a {
+            padding: 0px 0px 25px 0px;
+        }
+    </style>
+</head>
+@using(Html.BeginForm("Edit","Hemathkumar",FormMethod.Post)){
+<div class="a">
+    <label>Firstname </label>
+    @Html.EditorFor(a=>a.FirstName)
+</div>
+<div class="a">
+    <label>middlename</label>
+    @Html.EditorFor(a=>a.MiddleName)
+</div>
+<div class="a">
+    <label>lastname</label>
+    @Html.EditorFor(a=>a.LastName)
+</div>
+<div class="a">
+    <label>course:</label>
+    @Html.EditorFor(a=>a.Course)
+</div>
+<div class="a">
+    <label>Gender: </label>
+    @Html.EditorFor(a=>a.Gender)
+</div>
+<div class="a">
+    <label>phone</label>
+    @Html.EditorFor(a=>a.Phone)
+</div>
+<div class="a">
+    <label>Address</label>
+    @Html.EditorFor(a=>a.Address)
+</div>
+<div class="a">
+    <label>Email</label>
+    @Html.EditorFor(a=>a.Email)
+</div>
+<div class="a">
+    <label>password</label>
+    @Html.EditorFor(a=>a.Password)
+</div>
+<div class="a">
+    <label>Retype password</label>
+    @Html.EditorFor(a=>a.ReTypePassword)
+</div>
+<div class="a">
+    <button>Update</button>
+    <input type="button" value="Go-To_Read" onclick="location.href='@Url.Action("Read", "Hemathkumar")'" />
+</div>
+}
